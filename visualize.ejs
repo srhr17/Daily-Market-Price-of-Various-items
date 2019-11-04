@@ -1,0 +1,40 @@
+<html>
+
+<head>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-core.min.js"></script>
+    <script src="https://cdn.anychart.com/releases/v8/js/anychart-cartesian.min.js"></script>
+    <title>barchart</title>
+</head>
+
+<body>
+    <div id="container">
+        <script>
+            anychart.onDocumentLoad(function () {
+                //create the data
+                var all_state =<%= all_categories_state %>;
+                var all_district = <%= all_categories_district %>;
+                var sc_state =<%=sc_state %>;
+                var sc_district =<%=sc_district %>;
+                var st_state =<%= st_state %>;
+                var st_district =<%=st_district %>;
+                var data = [
+                    { x: 'All categories state', y: all_state },
+                    { x: 'All categories district', y: all_district },
+                    { x: 'sc state', y: sc_state },
+                    { x: 'sc district', y: sc_district },
+                    { x: 'st state', y: st_state },
+                    { x: 'st district', y: st_district },
+                ];
+                var chart = anychart.bar(); //create a chart
+                chart.title('Availability and prices of Wheat');//create title for the chart
+                chart.xAxis().title("district");//create name for X axis
+                chart.yAxis().title("price"); //create name for Y axis
+                var series = chart.bar(data); //create bar series and pass data
+                chart.container("container"); //reference the container Id
+                chart.draw(); //initiate drawing the bar chart
+            });
+        </script>
+    </div>
+</body>
+
+</html>
